@@ -74,13 +74,13 @@ jobs:
       with:
         repository: "ThirteenAG/Ultimate-ASI-Loader"
         tag: "x64-latest"
-        fileName: "dinput8-x64.zip"
+        fileName: "winmm-x64.zip"
 
     - name: Unpack dependencies
       shell: cmd
       run: |
-          7z x dinput8-x64.zip -odata/ -y
-          del dinput8-x64.zip
+          7z x winmm-x64.zip -odata/ -y
+          del winmm-x64.zip
           del /f /q data\*.SHA512
 
     - name: Pack binaries

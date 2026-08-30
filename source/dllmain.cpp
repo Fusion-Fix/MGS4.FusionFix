@@ -24,7 +24,7 @@ static safetyhook::InlineHook CreatePixelShaderHook;
 struct ShaderData {
     ComPtr<ID3DBlob> shaderBlob = nullptr;
     std::array<uint32_t, 4> shaderHash = {};
-};
+}; 
 
 std::vector<ShaderData> ShaderDataMap;
 

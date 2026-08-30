@@ -1,6 +1,6 @@
 # MGS4.FusionFix
 
-> A fix/enhancement mod for [Game Name].
+> A fix/enhancement mod for Metal Gear Solid 4: Guns of the Patriots.
 
 ## Disclaimer
 
