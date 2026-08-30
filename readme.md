@@ -1,10 +1,10 @@
-# {{PROJECT_NAME}}
+# MGS$.FusionFix
 
 > A fix/enhancement mod for [Game Name].
 
 ## Installation
 
-1. Download the latest release from the [Releases]({{REPO_URL}}/releases/latest) page.
+1. Download the latest release from the [Releases](https://github.com/Fusion-Fix/MGS4.FusionFix/releases/latest) page.
 2. Extract the archive into the game root directory.
 3. Launch the game.
 
@@ -15,12 +15,12 @@ Requirements:
 - Git (for submodule checkout)
 
 ```bat
-git clone --recurse-submodules {{REPO_URL}}
-cd {{PROJECT_NAME}}
+git clone --recurse-submodules https://github.com/Fusion-Fix/MGS4.FusionFix
+cd MGS$.FusionFix
 premake5.bat
 ```
 
-Open `build/{{PROJECT_NAME}}.slnx` in Visual Studio and build.
+Open `build/MGS$.FusionFix.slnx` in Visual Studio and build.
 
 ## Contributing
 
@@ -29,4 +29,4 @@ See [contributing.md](contributing.md) for workflow and reverse-engineering note
 
 ## License
 
-[{{LICENSE_SPDX}}](license)
+[MIT](license)

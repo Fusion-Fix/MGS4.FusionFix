@@ -63,7 +63,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Configure build
-      run: ./premake5 {{PREMAKE_VS_VERSION}} --with-version=${{ steps.versioning.outputs.version }}
+      run: ./premake5 vs2026 --with-version=${{ steps.versioning.outputs.version }}
 
     - name: Cache plugin-sdk build output
       id: cache-plugin-sdk
@@ -76,58 +76,55 @@ jobs:
       if: steps.cache-plugin-sdk.outputs.cache-hit != 'true' && hashFiles('external/plugin-sdk/shared/plugin.h') != ''
       shell: pwsh
       run: |
-        $slnx = "build/{{PROJECT_NAME}}.slnx"
+        $slnx = "build/MGS$.FusionFix.slnx"
         $content = Get-Content $slnx -Raw
         $sdkTargets = [regex]::Matches($content, '"(plugin_[a-zA-Z0-9_]+)"') |
                       ForEach-Object { $_.Groups[1].Value } | Select-Object -Unique
         foreach ($t in $sdkTargets) {
-          msbuild -m $slnx /target:$t /property:Configuration=Release /property:Platform={{MSBUILD_PLATFORM}}
-          msbuild -m $slnx /target:$t /property:Configuration=Debug   /property:Platform={{MSBUILD_PLATFORM}}
+          msbuild -m $slnx /target:$t /property:Configuration=Release /property:Platform=x64
+          msbuild -m $slnx /target:$t /property:Configuration=Debug   /property:Platform=x64
         }
 
     - name: Build
       run: |
-        msbuild -m build/{{PROJECT_NAME}}.slnx /property:Configuration=Release /property:Platform={{MSBUILD_PLATFORM}}
+        msbuild -m build/MGS$.FusionFix.slnx /property:Configuration=Release /property:Platform=x64
 
     - name: Download Ultimate ASI Loader
       uses: robinraju/release-downloader@v1.13
       with:
         repository: "ThirteenAG/Ultimate-ASI-Loader"
-        tag: "{{UAL_TAG}}"
-        fileName: "{{UAL_FILENAME}}"
+        tag: "x64-latest"
+        fileName: "dinput8-x64.zip"
 
     - name: Unpack dependencies
       shell: cmd
       run: |
-          7z x {{UAL_FILENAME}} -odata/ -y
-          del {{UAL_FILENAME}}
+          7z x dinput8-x64.zip -odata/ -y
+          del dinput8-x64.zip
           del /f /q data\*.SHA512
 
     - name: Pack binaries
       run: |
         ./release.bat
-      env:
-        CODE_SIGNING_PFX: ${{ github.ref_name == '{{DEFAULT_BRANCH}}' && (github.event_name == 'push' || github.event.inputs.release == 'true') && secrets.CODE_SIGNING_PFX || '' }}
-        CODE_SIGNING_PASSWORD: ${{ github.ref_name == '{{DEFAULT_BRANCH}}' && (github.event_name == 'push' || github.event.inputs.release == 'true') && secrets.CODE_SIGNING_PASSWORD || '' }}
 
     - name: Upload artifact
       uses: actions/upload-artifact@v7
       with:
         archive: false
-        name: {{PROJECT_NAME}}
-        path: {{PROJECT_NAME}}.zip
+        name: MGS$.FusionFix
+        path: MGS$.FusionFix.zip
 
     - name: Upload Release
       if: |
         github.event.inputs.release == 'true' &&
-        github.ref_name == '{{DEFAULT_BRANCH}}' &&
+        github.ref_name == 'main' &&
         (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
-        github.repository == '{{GITHUB_REPO_PATH}}'
+        github.repository == 'Fusion-Fix/MGS4.FusionFix'
       uses: ncipollo/release-action@v1.21.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         allowUpdates: false
-        name: {{PROJECT_NAME}} v${{ steps.versioning.outputs.version }}
-        body: "[README]({{REPO_URL}}#readme)"
+        name: MGS$.FusionFix v${{ steps.versioning.outputs.version }}
+        body: "[README](https://github.com/Fusion-Fix/MGS4.FusionFix#readme)"
         tag: v${{ steps.versioning.outputs.version }}
-        artifacts: {{PROJECT_NAME}}.zip
+        artifacts: MGS$.FusionFix.zip

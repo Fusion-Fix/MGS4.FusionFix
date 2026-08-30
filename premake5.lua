@@ -4,16 +4,16 @@ newoption {
     description = "Current version",
 }
 
-workspace "{{PROJECT_NAME}}"
+workspace "MGS$.FusionFix"
    configurations { "Release", "Debug" }
-   architecture "{{ARCHITECTURE}}"
+   architecture "x64"
    location "build"
    cppdialect "C++latest"
    targetdir "bin/%{cfg.buildcfg}"
    buildoptions { "/dxifcInlineFunctions- /Zc:__cplusplus /utf-8" }
    staticruntime "On"
    multiprocessorcompile ("On")
-   startproject "{{PROJECT_NAME}}"
+   startproject "MGS$.FusionFix"
 
    local major = os.date("%d")
    local minor = os.date("%m")
@@ -80,18 +80,18 @@ workspace "{{PROJECT_NAME}}"
       targetdir ("bin/%{cfg.buildcfg}")
    end
 
-project "{{PROJECT_NAME}}"
-   kind "{{OUTPUT_KIND}}"
+project "MGS$.FusionFix"
+   kind "SharedLib"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
-   targetextension "{{TARGET_EXTENSION}}"
+   targetextension ".asi"
    characterset ("Unicode")
 
-   defines { "rsc_CompanyName=\"{{PROJECT_NAME}}\"" }
-   defines { "rsc_LegalCopyright=\"{{LICENSE_SPDX}}\""}
+   defines { "rsc_CompanyName=\"MGS$.FusionFix\"" }
+   defines { "rsc_LegalCopyright=\"MIT\""}
    defines { "rsc_InternalName=\"%{prj.name}\"", "rsc_ProductName=\"%{prj.name}\"", "rsc_OriginalFilename=\"%{cfg.buildtarget.name}\"" }
-   defines { "rsc_FileDescription=\"{{PROJECT_NAME}}\"" }
-   defines { "rsc_UpdateUrl=\"{{REPO_URL}}\"" }
+   defines { "rsc_FileDescription=\"MGS$.FusionFix\"" }
+   defines { "rsc_UpdateUrl=\"https://github.com/Fusion-Fix/MGS4.FusionFix\"" }
    defines { "rsc_FileVersion_MAJOR=" .. major }
    defines { "rsc_FileVersion_MINOR=" .. minor }
    defines { "rsc_FileVersion_BUILD=" .. build }
@@ -107,8 +107,17 @@ project "{{PROJECT_NAME}}"
    files { "source/**.h", "source/**.hpp", "source/**.cpp", "source/**.hxx", "source/**.ixx" }
    files { "source/resources/Versioninfo.rc" }
 
-   -- ##BEGIN_EXTERNAL_SUBMODULES## (managed by setup.py - do not edit this line)
-   -- ##END_EXTERNAL_SUBMODULES## (managed by setup.py - do not edit this line)
+   -- injector
+   includedirs { "external/injector/include" }
+   includedirs { "external/injector/safetyhook/include" }
+   includedirs { "external/injector/zydis" }
+   files { "external/injector/safetyhook/include/**.hpp", "external/injector/safetyhook/src/**.cpp" }
+   files { "external/injector/zydis/**.h", "external/injector/zydis/**.c" }
+   -- hooking
+   includedirs { "external/hooking" }
+   files { "external/hooking/Hooking.Patterns.h", "external/hooking/Hooking.Patterns.cpp" }
+   -- inireader
+   includedirs { "external/inireader" }
 
    -- Set game install path here for local debugging (not committed):
-   -- setpaths("C:/Games/GameName/", "Game.exe", "plugins/")
+   setpaths("C:/Games/MGS4/MGS4", "", "plugins/")

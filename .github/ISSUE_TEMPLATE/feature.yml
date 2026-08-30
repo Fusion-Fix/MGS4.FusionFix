@@ -8,7 +8,7 @@ body:
     attributes:
       label: What should happen
       placeholder: |
-        {{PROJECT_NAME}} should have a setting that does X.
+        MGS$.FusionFix should have a setting that does X.
       description: >
         Be specific and descriptive.
 
@@ -16,7 +16,7 @@ body:
     attributes:
       label: Checklist
       options:
-        - label: "Check the [latest build]({{REPO_URL}}/actions) in case it's already implemented."
+        - label: "Check the [latest build](https://github.com/Fusion-Fix/MGS4.FusionFix/actions) in case it's already implemented."
           required: true
-        - label: "[Search for other requests]({{REPO_URL}}/issues) of the same feature."
+        - label: "[Search for other requests](https://github.com/Fusion-Fix/MGS4.FusionFix/issues) of the same feature."
           required: true

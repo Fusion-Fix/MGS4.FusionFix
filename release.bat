@@ -1,8 +1,7 @@
-call tools\EmbedPDB\EmbedPDB.exe bin\Release\{{PROJECT_NAME}}{{TARGET_EXTENSION}}
+call tools\EmbedPDB\EmbedPDB.exe bin\Release\MGS$.FusionFix.asi
 
-powershell -NoProfile -ExecutionPolicy Bypass -File "sign.ps1" -SearchPaths ".\bin\Release\{{PROJECT_NAME}}{{TARGET_EXTENSION}}"
 
-copy bin\Release\{{PROJECT_NAME}}{{TARGET_EXTENSION}} data\plugins\{{PROJECT_NAME}}{{TARGET_EXTENSION}}
+copy bin\Release\MGS$.FusionFix.asi data\plugins\MGS$.FusionFix.asi
 
-7z a "{{PROJECT_NAME}}.zip" ".\data\*" ^
+7z a "MGS$.FusionFix.zip" ".\data\*" ^
 -xr!*\.gitkeep

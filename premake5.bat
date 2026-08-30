@@ -1,1 +1,1 @@
-premake5 {{PREMAKE_VS_VERSION}}
+premake5 vs2026

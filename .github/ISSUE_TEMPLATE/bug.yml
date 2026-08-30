@@ -46,9 +46,9 @@ body:
     attributes:
       label: Checklist
       options:
-        - label: "Test in the [latest build]({{REPO_URL}}/actions) in case it's already fixed."
+        - label: "Test in the [latest build](https://github.com/Fusion-Fix/MGS4.FusionFix/actions) in case it's already fixed."
           required: true
-        - label: "[Search for other reports]({{REPO_URL}}/issues) of the same issue."
+        - label: "[Search for other reports](https://github.com/Fusion-Fix/MGS4.FusionFix/issues) of the same issue."
           required: true
         - label: "Include logs or screenshots of the issue."
           required: true

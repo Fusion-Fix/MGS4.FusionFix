@@ -215,5 +215,5 @@ node_modules/
 *.nvuser
 
 # Output artifact
-{{PROJECT_NAME}}.zip
-data/plugins/{{PROJECT_NAME}}{{TARGET_EXTENSION}}
+MGS$.FusionFix.zip
+data/plugins/MGS$.FusionFix.asi
