@@ -16,7 +16,7 @@ float g_fDynamicResolutionOverride = 0.0f;
 
 float g_fShadowTexelOverride = 0.0f;
 int g_nShadowResOverride = 0;
-
+ 
 float g_fShadowSampleCountOverride[4] = { SHADOW_SAMPLE_COUNT , SHADOW_SAMPLE_COUNT , SHADOW_SAMPLE_COUNT , SHADOW_SAMPLE_COUNT };
 
 static safetyhook::InlineHook CreatePixelShaderHook;

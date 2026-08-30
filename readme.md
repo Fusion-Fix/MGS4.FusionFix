@@ -2,6 +2,10 @@
 
 > A fix/enhancement mod for [Game Name].
 
+## Disclaimer
+
+Only works with D3D11 renderer for now.
+
 ## Installation
 
 1. Download the latest release from the [Releases](https://github.com/Fusion-Fix/MGS4.FusionFix/releases/latest) page.
