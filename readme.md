@@ -1,10 +1,10 @@
-# MGS4.FusionFix
+# {{PROJECT_NAME}}
 
-> A fix/enhancement mod for Metal Gear Solid 4: Guns of the Patriots.
+> A fix/enhancement mod for [Game Name].
 
 ## Installation
 
-1. Download the latest release from the [Releases](https://github.com/Fusion-Fix/MGS4.FusionFix/releases/latest) page.
+1. Download the latest release from the [Releases]({{REPO_URL}}/releases/latest) page.
 2. Extract the archive into the game root directory.
 3. Launch the game.
 
@@ -16,11 +16,11 @@ Requirements:
 
 ```bat
 git clone --recurse-submodules {{REPO_URL}}
-cd MGS4.FusionFix
+cd {{PROJECT_NAME}}
 premake5.bat
 ```
 
-Open `build/MGS4.FusionFix.slnx` in Visual Studio and build.
+Open `build/{{PROJECT_NAME}}.slnx` in Visual Studio and build.
 
 ## Contributing
 
