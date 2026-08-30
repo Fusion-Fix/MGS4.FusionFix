@@ -1,0 +1,64 @@
+{
+  "project_name": "GameName.FusionFix",
+  "repo_url": "https://github.com/Fusion-Fix/GameName.FusionFix",
+  "license_spdx": "MIT",
+  "architecture": "x64",
+  "output_kind": "SharedLib",
+  "target_extension": ".asi",
+  "default_branch": "main",
+  "premake_vs_version": "vs2026",
+  "submodules": [
+    {
+      "name": "injector",
+      "path": "external/injector",
+      "url": "https://github.com/ThirteenAG/injector",
+      "enabled": true
+    },
+    {
+      "name": "hooking",
+      "path": "external/hooking",
+      "url": "https://github.com/ThirteenAG/Hooking.Patterns",
+      "enabled": true
+    },
+    {
+      "name": "inireader",
+      "path": "external/inireader",
+      "url": "https://github.com/ThirteenAG/IniReader",
+      "enabled": true
+    },
+    {
+      "name": "plugin-sdk",
+      "path": "external/plugin-sdk",
+      "url": "https://github.com/DK22Pac/plugin-sdk",
+      "enabled": false
+    },
+    {
+      "name": "modupdater",
+      "path": "external/modupdater",
+      "url": "https://github.com/ThirteenAG/modupdater",
+      "enabled": false
+    },
+    {
+      "name": "spdlog",
+      "path": "external/spdlog",
+      "url": "https://github.com/gabime/spdlog",
+      "enabled": false
+    },
+    {
+      "name": "filewatch",
+      "path": "external/filewatch",
+      "url": "https://github.com/ThomasMonkman/filewatch",
+      "enabled": false
+    },
+    {
+      "name": "modutils",
+      "path": "external/modutils",
+      "url": "https://github.com/CookiePLMonster/ModUtils",
+      "enabled": false
+    }
+  ],
+  "run_git_submodule_add": true,
+  "run_initial_commit": true,
+  "enable_code_signing": false,
+  "plugin_sdk_game": "GTA III"
+}
