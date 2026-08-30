@@ -65,29 +65,9 @@ jobs:
     - name: Configure build
       run: ./premake5 vs2026 --with-version=${{ steps.versioning.outputs.version }}
 
-    - name: Cache plugin-sdk build output
-      id: cache-plugin-sdk
-      uses: actions/cache@v6
-      with:
-        path: external/plugin-sdk/output
-        key: plugin-sdk-${{ runner.os }}-${{ hashFiles('external/plugin-sdk/**/*.h', 'external/plugin-sdk/**/*.cpp', 'external/plugin-sdk/**/*.c', 'external/plugin-sdk/safetyhook/**') }}
-
-    - name: Build plugin-sdk
-      if: steps.cache-plugin-sdk.outputs.cache-hit != 'true' && hashFiles('external/plugin-sdk/shared/plugin.h') != ''
-      shell: pwsh
-      run: |
-        $slnx = "build/MGS$.FusionFix.slnx"
-        $content = Get-Content $slnx -Raw
-        $sdkTargets = [regex]::Matches($content, '"(plugin_[a-zA-Z0-9_]+)"') |
-                      ForEach-Object { $_.Groups[1].Value } | Select-Object -Unique
-        foreach ($t in $sdkTargets) {
-          msbuild -m $slnx /target:$t /property:Configuration=Release /property:Platform=x64
-          msbuild -m $slnx /target:$t /property:Configuration=Debug   /property:Platform=x64
-        }
-
     - name: Build
       run: |
-        msbuild -m build/MGS$.FusionFix.slnx /property:Configuration=Release /property:Platform=x64
+        msbuild -m build/MGS4.FusionFix.slnx /property:Configuration=Release /property:Platform=x64
 
     - name: Download Ultimate ASI Loader
       uses: robinraju/release-downloader@v1.13
@@ -111,8 +91,8 @@ jobs:
       uses: actions/upload-artifact@v7
       with:
         archive: false
-        name: MGS$.FusionFix
-        path: MGS$.FusionFix.zip
+        name: MGS4.FusionFix
+        path: MGS4.FusionFix.zip
 
     - name: Upload Release
       if: |
@@ -124,7 +104,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         allowUpdates: false
-        name: MGS$.FusionFix v${{ steps.versioning.outputs.version }}
+        name: MGS4.FusionFix v${{ steps.versioning.outputs.version }}
         body: "[README](https://github.com/Fusion-Fix/MGS4.FusionFix#readme)"
         tag: v${{ steps.versioning.outputs.version }}
-        artifacts: MGS$.FusionFix.zip
+        artifacts: MGS4.FusionFix.zip

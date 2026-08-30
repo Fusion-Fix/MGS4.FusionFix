@@ -1,4 +1,4 @@
-# MGS$.FusionFix
+# MGS4.FusionFix
 
 > A fix/enhancement mod for [Game Name].
 
@@ -16,11 +16,11 @@ Requirements:
 
 ```bat
 git clone --recurse-submodules https://github.com/Fusion-Fix/MGS4.FusionFix
-cd MGS$.FusionFix
+cd MGS4.FusionFix
 premake5.bat
 ```
 
-Open `build/MGS$.FusionFix.slnx` in Visual Studio and build.
+Open `build/MGS4.FusionFix.slnx` in Visual Studio and build.
 
 ## Contributing
 

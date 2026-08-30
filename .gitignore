@@ -215,5 +215,6 @@ node_modules/
 *.nvuser
 
 # Output artifact
-MGS$.FusionFix.zip
-data/plugins/MGS$.FusionFix.asi
+MGS4.FusionFix.zip
+data/plugins/MGS4.FusionFix.asi
+shaders/compiled/**.*

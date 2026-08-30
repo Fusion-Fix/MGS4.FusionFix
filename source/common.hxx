@@ -20,3 +20,21 @@
 #include <future>
 #include <string>
 #include <filesystem>
+#include <span>
+#include <vector>
+#include <string_view>
+#include <filesystem>
+#include <stacktrace>
+#include <variant>
+#include <unordered_map>
+#include <fstream>
+
+#include "bgfx/bgfx.h"
+
+#include <d3d11.h>
+#include <dxgi.h>
+#include <d3dcompiler.h>
+#include <wrl/client.h>
+using Microsoft::WRL::ComPtr;
+
+namespace fs = std::filesystem;

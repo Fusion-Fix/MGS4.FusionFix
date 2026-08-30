@@ -1,0 +1,150 @@
+// ---- Created with 3Dmigoto v1.2.45 on Sun Aug 30 19:18:03 2026
+Texture2D<float4> t4 : register(t4);
+
+Texture2D<float4> t3 : register(t3);
+
+Texture2D<float4> t2 : register(t2);
+
+Texture2D<float4> t1 : register(t1);
+
+Texture2D<float4> t0 : register(t0);
+
+SamplerComparisonState s4_s : register(s4);
+
+SamplerState s3_s : register(s3);
+
+SamplerState s2_s : register(s2);
+
+SamplerState s1_s : register(s1);
+
+SamplerState s0_s : register(s0);
+
+cbuffer cb0 : register(b0)
+{
+  float4 cb0[12];
+}
+
+
+
+
+// 3Dmigoto declarations
+#define cmp -
+Texture1D<float4> IniParams : register(t120);
+Texture2D<float4> StereoParams : register(t125);
+
+
+void main( 
+  float4 v0 : SV_POSITION0,
+  float4 v1 : COLOR0,
+  float3 v2 : COLOR1,
+  float w2 : COLOR2,
+  float4 v3 : TEXCOORD0,
+  float4 v4 : TEXCOORD1,
+  float4 v5 : TEXCOORD2,
+  float4 v6 : TEXCOORD3,
+  float4 v7 : TEXCOORD4,
+  float4 v8 : TEXCOORD5,
+  float4 v9 : TEXCOORD6,
+  float4 v10 : TEXCOORD7,
+  float4 v11 : TEXCOORD8,
+  float4 v12 : TEXCOORD9,
+  uint v13 : SV_IsFrontFace0,
+  out float4 o0 : SV_TARGET0)
+{
+  float4 r0,r1,r2,r3,r4,r5,r6,r7;
+  float ignAngle, ign_sin, ign_cos, spiralR, spiralTheta, rotX, rotY;
+  uint4 bitmask, uiDest;
+  float4 fDest;
+
+  r0.xy = t1.Sample(s1_s, v3.zw).yw;
+  r0.xy = float2(-0.5,-0.5) + r0.yx;
+  r0.xy = r0.xy + r0.xy;
+  r0.w = -r0.x * r0.x + 1;
+  r0.w = -r0.y * r0.y + r0.w;
+  r0.w = max(0, r0.w);
+  r1.x = cmp(0 < r0.w);
+  r1.y = rsqrt(r0.w);
+  r0.w = r1.y * r0.w;
+  r0.z = r1.x ? r0.w : 0;
+  r1.xy = t3.Sample(s3_s, v4.zw).yw;
+  r1.xy = float2(-0.5,-0.5) + r1.yx;
+  r1.xy = r1.xy + r1.xy;
+  r0.w = -r1.x * r1.x + 1;
+  r0.w = -r1.y * r1.y + r0.w;
+  r0.w = max(0, r0.w);
+  r1.w = cmp(0 < r0.w);
+  r2.x = rsqrt(r0.w);
+  r0.w = r2.x * r0.w;
+  r1.z = r1.w ? r0.w : 0;
+  r2.xy = float2(1,1) + -cb0[4].zw;
+  r1.xyz = r2.xxx * r1.xyz;
+  r0.xyz = r0.xyz * cb0[4].zzz + r1.xyz;
+  r0.z = dot(r0.xyz, r0.xyz);
+  r0.z = rsqrt(r0.z);
+  r0.xyzw = r0.xyxy * r0.zzzz;
+  r1.x = dot(v9.xyz, v9.xyz);
+  r1.x = rsqrt(r1.x);
+  r1.xyz = v9.xyz * r1.xxx;
+  r3.xyzw = float4(0.100000001,0.100000001,0.100000001,0.100000001) * cb0[4].xxyy;
+  r0.xy = r0.xy * r3.xy + v3.xy;
+  r0.zw = r0.zw * r3.zw + v4.xy;
+  r3.xyzw = t0.Sample(s0_s, r0.xy).xyzw;
+  r0.xyzw = t2.Sample(s2_s, r0.zw).xyzw;
+  r2.xzw = cb0[4].www * r3.xyz;
+  r0.xyz = r0.xyz * r2.yyy;
+  r0.xyz = r0.xyz * r0.www;
+  r3.xyz = r2.xzw * r3.www + r0.xyz;
+  r0.xyzw = cb0[0].xyzw * r3.xyzw;
+  r2.xyz = float3(0.333390802,0.333390802,0.333390802) * v6.xyz;
+  r2.xyz = v5.xyz * float3(0.333390802,0.333390802,0.333390802) + r2.xyz;
+  r2.xyz = v2.xyz * float3(0.333390802,0.333390802,0.333390802) + r2.xyz;
+  r2.xyz = v1.xyz + r2.xyz;
+  bitmask.w = ((~(-1 << 1)) << 1) & 0xffffffff;  r1.w = (((uint)v13.x << 1) & bitmask.w) | ((uint)0 & ~bitmask.w);
+  r1.w = (int)r1.w + -1;
+  r1.w = (int)r1.w;
+  r2.w = dot(cb0[9].xyz, r1.xyz);
+  r3.xy = float2(0.699999988,0.699999988) * cb0[10].xy;
+  r3.zw = v11.xy / v11.ww;
+  r4.xy = r3.zw * float2(0.5,-0.5) + float2(0.5,0.5);
+  r1.w = v12.y * r1.w + v11.z;
+  r4.z = saturate(r1.w / v11.w);
+  r1.w = -1 + cb0[11].x;
+  r3.z = 360 / r1.w;
+  r5.z = 0;
+    r4.w = 0;
+  r5.w = 0;
+  {
+    r4.w = 0;
+    ignAngle = frac(dot(v0.xy, float2(0.06711056, 0.00583715)));
+    ignAngle = frac(52.9829189 * ignAngle) * 2 * 3.14159265359;
+    sincos(ignAngle, ign_sin, ign_cos);
+    [unroll]
+    for (int j = 0; j < 8; j++) {
+      spiralR = sqrt((j + 0.5) / 8);
+      spiralTheta = j * 2.39996323;
+      sincos(spiralTheta, r6.x, r7.x);
+      r5.x = r7.x * spiralR;
+      r5.y = r6.x * spiralR;
+      rotX = ign_cos * r5.x - ign_sin * r5.y;
+      rotY = ign_sin * r5.x + ign_cos * r5.y;
+      r6.x = r3.x * rotX + r4.x;
+      r6.y = r3.y * rotY + r4.y;
+      r6.z = r4.z;
+      r5.x = t4.SampleCmpLevelZero(s4_s, r6.xy, r6.z).x;
+      r4.w = r5.x + r4.w;
+    }
+  }
+  r1.w = 1 / cb0[11].x;
+  r3.x = r4.w * r1.w;
+  r1.w = -r4.w * r1.w + 1;
+  r3.y = saturate(v12.x);
+  r1.w = r1.w * r3.y + r3.x;
+  r2.w = cmp(r2.w < 0);
+  r1.w = r2.w ? r1.w : 0;
+  r1.x = saturate(dot(-cb0[9].xyz, r1.xyz));
+  r1.yzw = cb0[8].xyz * r1.www;
+  r1.xyz = r1.yzw * r1.xxx + r2.xyz;
+  o0.xyz = r1.xyz * r0.xyz;
+  o0.w = v1.w * r0.w;
+  return;
+}

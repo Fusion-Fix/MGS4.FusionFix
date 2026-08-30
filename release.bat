@@ -1,7 +1,7 @@
-call tools\EmbedPDB\EmbedPDB.exe bin\Release\MGS$.FusionFix.asi
+call tools\EmbedPDB\EmbedPDB.exe bin\Release\MGS4.FusionFix.asi
 
 
-copy bin\Release\MGS$.FusionFix.asi data\plugins\MGS$.FusionFix.asi
+copy bin\Release\MGS4.FusionFix.asi data\plugins\MGS4.FusionFix.asi
 
-7z a "MGS$.FusionFix.zip" ".\data\*" ^
+7z a "MGS4.FusionFix.zip" ".\data\*" ^
 -xr!*\.gitkeep

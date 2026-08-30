@@ -8,7 +8,7 @@ body:
     attributes:
       label: What should happen
       placeholder: |
-        MGS$.FusionFix should have a setting that does X.
+        MGS4.FusionFix should have a setting that does X.
       description: >
         Be specific and descriptive.
 

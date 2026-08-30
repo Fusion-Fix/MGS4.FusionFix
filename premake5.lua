@@ -4,7 +4,7 @@ newoption {
     description = "Current version",
 }
 
-workspace "MGS$.FusionFix"
+workspace "MGS4.FusionFix"
    configurations { "Release", "Debug" }
    architecture "x64"
    location "build"
@@ -13,7 +13,7 @@ workspace "MGS$.FusionFix"
    buildoptions { "/dxifcInlineFunctions- /Zc:__cplusplus /utf-8" }
    staticruntime "On"
    multiprocessorcompile ("On")
-   startproject "MGS$.FusionFix"
+   startproject "MGS4.FusionFix"
 
    local major = os.date("%d")
    local minor = os.date("%m")
@@ -80,17 +80,17 @@ workspace "MGS$.FusionFix"
       targetdir ("bin/%{cfg.buildcfg}")
    end
 
-project "MGS$.FusionFix"
+project "MGS4.FusionFix"
    kind "SharedLib"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
    targetextension ".asi"
    characterset ("Unicode")
 
-   defines { "rsc_CompanyName=\"MGS$.FusionFix\"" }
+   defines { "rsc_CompanyName=\"MGS4.FusionFix\"" }
    defines { "rsc_LegalCopyright=\"MIT\""}
    defines { "rsc_InternalName=\"%{prj.name}\"", "rsc_ProductName=\"%{prj.name}\"", "rsc_OriginalFilename=\"%{cfg.buildtarget.name}\"" }
-   defines { "rsc_FileDescription=\"MGS$.FusionFix\"" }
+   defines { "rsc_FileDescription=\"MGS4.FusionFix\"" }
    defines { "rsc_UpdateUrl=\"https://github.com/Fusion-Fix/MGS4.FusionFix\"" }
    defines { "rsc_FileVersion_MAJOR=" .. major }
    defines { "rsc_FileVersion_MINOR=" .. minor }
@@ -104,13 +104,31 @@ project "MGS$.FusionFix"
 
    includedirs { "source" }
    includedirs { "source/includes" }
-   files { "source/**.h", "source/**.hpp", "source/**.cpp", "source/**.hxx", "source/**.ixx" }
+   includedirs { "shaders/compiled" }
+   files { "source/**.h", "source/**.hpp", "source/**.cpp", "source/**.hxx", "source/**.ixx", "shaders/ps/**.hlsl", "shaders/vs/**.hlsl"  }
    files { "source/resources/Versioninfo.rc" }
+   
+   filter { "files:shaders/ps/**.hlsl" }
+		shadertype "Pixel"
+		shadermodel "5.0"
+		shaderentry "main"
+		shaderobjectfileoutput ""
+		shaderheaderfileoutput "../shaders/compiled/%%(Filename)-ps.h"
+	
+   filter { "files:shaders/vs/**.hlsl" }
+		shadertype "Vertex"
+		shadermodel "5.0"
+		shaderentry "main"
+		shaderobjectfileoutput ""
+		shaderheaderfileoutput "../shaders/compiled/%%(Filename)-vs.h"
+		
+   filter {}
 
    -- injector
    includedirs { "external/injector/include" }
    includedirs { "external/injector/safetyhook/include" }
    includedirs { "external/injector/zydis" }
+   includedirs { "external/bgfx/include" }
    files { "external/injector/safetyhook/include/**.hpp", "external/injector/safetyhook/src/**.cpp" }
    files { "external/injector/zydis/**.h", "external/injector/zydis/**.c" }
    -- hooking
@@ -118,6 +136,10 @@ project "MGS$.FusionFix"
    files { "external/hooking/Hooking.Patterns.h", "external/hooking/Hooking.Patterns.cpp" }
    -- inireader
    includedirs { "external/inireader" }
+   
+   links { "d3d11.lib" }
+   links { "dxgi.lib" }
+   links { "d3dcompiler.lib" }
 
    -- Set game install path here for local debugging (not committed):
-   setpaths("C:/Games/MGS4/MGS4", "", "plugins/")
+   setpaths("C:/Games/MGS4/MGS4/", "mgs4.exe", "plugins/")
